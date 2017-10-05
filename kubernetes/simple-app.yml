@@ -1,0 +1,35 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  namespace: default
+  name: simple-app
+  labels:
+    run: simple-app
+spec:
+  replicas: 2
+  template:
+    metadata:
+      labels:
+        run: simple-app
+    spec:
+      restartPolicy: Always
+      containers:
+      - name: simple-app
+        image: kamilbaran/nobleprog_training:simple_app_v1
+        imagePullPolicy: Always
+---
+apiVersion: v1
+kind: Service
+metadata:
+  namespace: default
+  name: simple-app
+  labels:
+    run: simple-app
+spec:
+  type: ClusterIP
+  selector:
+    run: simple-app
+  ports:
+  - port: 80
+    protocol: TCP
+    targetPort: 80
