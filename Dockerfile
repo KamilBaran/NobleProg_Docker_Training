@@ -1,3 +1,3 @@
 FROM httpd:alpine
-MAINTAINER Kamil Baran <kamil.baran@nobleprog.pl>
+LABEL maintainer="kamil.baran@nobleprog.pl"
 COPY index.html /usr/local/apache2/htdocs/
